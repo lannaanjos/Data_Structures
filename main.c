@@ -5,8 +5,5 @@
 #include "n_to_one.h"
 
 int main() {
-    torreHanoi(5, 'A', 'B', 'C');
-    printf("\n");
-    n_to_one(5);
-    return 0;
+    one_to_n(5);
 }
