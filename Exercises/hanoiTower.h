@@ -8,8 +8,3 @@ void torreHanoi(int n, char origem, char destino, char auxiliar){
     printf("Disco %d, %c -> %c\n", n, origem, destino);
     torreHanoi(n-1, auxiliar, destino, origem);
 }
-
-int main(void) {
-    torreHanoi(5, 'A', 'B', 'C');
-    return 0;
-}
