@@ -33,14 +33,14 @@ Exibição de Funcionários: O sistema permitirá listar todos os funcionários 
 
 typedef struct Funcionario{
     int matricula; // equivalente a valor
-    char nome[25];
-    char cargo[25];
+    char nome[25]; // \/\/\/\/\/\/ arrumar p ser dinamico \/\/\/\/\/\/\/\/
+    char cargo[25]; // idem
     float salario;
     struct No* esquerda;
     struct No* direita;
 }Funcionario;
 
-Funcionario* criarNo(int n_matricula, char* nome[], char* cargo[], float salario){
+Funcionario* criarFuncionario(int n_matricula, char* nome[], char* cargo[], float salario){
     Funcionario* novoFuncionario = (Funcionario*)malloc(sizeof(Funcionario));
     if (novoFuncionario == NULL){
         fprintf(stderr,"Erro na alocação\n");
@@ -48,25 +48,27 @@ Funcionario* criarNo(int n_matricula, char* nome[], char* cargo[], float salario
     }
 
     novoFuncionario->matricula = n_matricula;
-
+    *novoFuncionario->nome = *nome;
+    *novoFuncionario->cargo = *cargo;
+    novoFuncionario->salario = salario;
     novoFuncionario->direita = NULL;
     novoFuncionario->esquerda = NULL;
 
     return novoFuncionario;
 }
 
-No* inserirNo(No* raiz, int valor){
-    if(raiz == NULL){
-        return criarNo(valor);
+Funcionario* inserirNo(Funcionario* base, int n_matricula, char* nome[], char* cargo, float salario){
+    if(base == NULL){
+        return criarFuncionario(n_matricula, *nome, *cargo, salario);
     }
 
-    if(valor < raiz->valor){
-        raiz->esquerda = inserirNo(raiz->esquerda, valor);
+    if(n_matricula < base->matricula){
+        base->esquerda = inserirNo(base->esquerda, n_matricula, *nome, *cargo, salario);
     } else {
-        raiz->direita = inserirNo(raiz->direita, valor);
+        base->direita = inserirNo(base->direita, n_matricula, *nome, *cargo, salario);
     }
 
-    return raiz;
+    return base;
 }
 
 
