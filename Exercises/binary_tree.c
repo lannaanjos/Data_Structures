@@ -71,6 +71,13 @@ Funcionario* inserirNo(Funcionario* base, int n_matricula, char* nome[], char* c
     return base;
 }
 
+void mostrarHierarquia(Funcionario* base){
+    if (base != NULL){
+        mostrarHierarquia(base->esquerda);
+        printf("Nome: %s | Matrícula: %d", base->nome, base->matricula);
+        mostrarHierarquia(base->direita);
+    }
+}
 
 int main (){
     printf("olá");
