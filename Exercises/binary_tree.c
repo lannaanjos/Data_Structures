@@ -76,6 +76,16 @@ void mostrarHierarquia(Funcionario* base){
         mostrarHierarquia(base->esquerda);
         printf("Nome: %s | Matrícula: %d", base->nome, base->matricula);
         mostrarHierarquia(base->direita);
+    } else {
+        printf("Não há funcionários!\n");
+    }
+}
+
+void liberarHierarquia(Funcionario* base){
+    if (base != NULL){
+        liberarHierarquia(base->esquerda);
+        liberarHierarquia(base->direita);
+        free(base);
     }
 }
 
