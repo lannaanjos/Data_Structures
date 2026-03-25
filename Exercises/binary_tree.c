@@ -57,6 +57,7 @@ Funcionario* criarFuncionario(int n_matricula, char* nome[], char* cargo[], floa
     return novoFuncionario;
 }
 
+// INSERÇÃO DE FUNCIONÁRIO
 Funcionario* inserirNo(Funcionario* base, int n_matricula, char* nome[], char* cargo, float salario){
     if(base == NULL){
         return criarFuncionario(n_matricula, *nome, *cargo, salario);
@@ -71,6 +72,7 @@ Funcionario* inserirNo(Funcionario* base, int n_matricula, char* nome[], char* c
     return base;
 }
 
+// EXIBIÇÃO DE FUNCIONÁRIO
 void mostrarHierarquia(Funcionario* base){
     if (base != NULL){
         mostrarHierarquia(base->esquerda);
@@ -81,6 +83,7 @@ void mostrarHierarquia(Funcionario* base){
     }
 }
 
+// liberar memória
 void liberarHierarquia(Funcionario* base){
     if (base != NULL){
         liberarHierarquia(base->esquerda);
@@ -90,5 +93,6 @@ void liberarHierarquia(Funcionario* base){
 }
 
 int main (){
+    // demonstração de funcionamento
     printf("olá");
 }
