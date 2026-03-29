@@ -41,8 +41,8 @@ typedef struct Funcionario{
 }Funcionario;
 
 Funcionario* criarFuncionario(int n_matricula, char* nome[], char* cargo[], float salario){
-    Funcionario* novoFuncionario = (Funcionario*)malloc(sizeof(Funcionario));
-    if (novoFuncionario == NULL){
+    Funcionario* novoFuncionario = (Funcionario*)malloc(sizeof(Funcionario)); // cria ponteiro do tamanho da strcut Funcionario
+    if (novoFuncionario == NULL){ // verifica se deu certo a criação de um novo funcionário 
         fprintf(stderr,"Erro na alocação\n");
         exit(1);
     }
