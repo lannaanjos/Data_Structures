@@ -18,10 +18,10 @@ right: Ponteiro para o filho direito (se existir).
 
 Operações do Sistema
 
-Inserção de Funcionário: O sistema permitirá a inserção de um novo funcionário na árvore, baseado na matrícula do funcionário.
+Inserção de Funcionário: O sistema permitirá a inserção de um novo funcionário na árvore baseado na matrícula do funcionário (ok)
 Atualização de Funcionário: O sistema permitirá a atualização dos dados de um funcionário existente.
 Busca de Funcionário: O sistema permitirá buscar um funcionário pela matrícula.
-Exibição de Funcionários: O sistema permitirá listar todos os funcionários cadastrados na árvore.
+Exibição de Funcionários: O sistema permitirá listar todos os funcionários cadastrados na árvore.(Ok)
 
 */
 
@@ -43,10 +43,10 @@ typedef struct Funcionario{
 Funcionario* criarFuncionario(int n_matricula, char* nome[], char* cargo[], float salario){
     Funcionario* novoFuncionario = (Funcionario*)malloc(sizeof(Funcionario)); // cria ponteiro do tamanho da strcut Funcionario
     if (novoFuncionario == NULL){ // verifica se deu certo a criação de um novo funcionário 
-        fprintf(stderr,"Erro na alocação\n");
-        exit(1);
-    }
-
+        fprintf(stderr,"Erro na alocação\n")
+        exit(1); // se tudo ser errado sai 
+    // }
+    // atribução ao campos 
     novoFuncionario->matricula = n_matricula;
     *novoFuncionario->nome = *nome;
     *novoFuncionario->cargo = *cargo;
@@ -58,12 +58,12 @@ Funcionario* criarFuncionario(int n_matricula, char* nome[], char* cargo[], floa
 }
 
 // INSERÇÃO DE FUNCIONÁRIO
-Funcionario* inserirNo(Funcionario* base, int n_matricula, char* nome[], char* cargo, float salario){
-    if(base == NULL){
+Funcionario* inserirFuncionario(Funcionario* base, int n_matricula, char* nome[], char* cargo, float salario){
+    if(base == NULL){ // se n tiver nada na base vai ser o primeiro funcionário
         return criarFuncionario(n_matricula, *nome, *cargo, salario);
     }
 
-    if(n_matricula < base->matricula){
+    if(n_matricula < base->matricula){ // aqui descide se vai para a esquerda ou para a direita
         base->esquerda = inserirNo(base->esquerda, n_matricula, *nome, *cargo, salario);
     } else {
         base->direita = inserirNo(base->direita, n_matricula, *nome, *cargo, salario);
@@ -72,9 +72,15 @@ Funcionario* inserirNo(Funcionario* base, int n_matricula, char* nome[], char* c
     return base;
 }
 
+Funcionario* editarFuncionario(Funcionario* base, int ){
+    if (base == NULL){
+      printf("Funcionário inexistente");
+    }
+  }
+
 // EXIBIÇÃO DE FUNCIONÁRIO
 void mostrarHierarquia(Funcionario* base){
-    if (base != NULL){
+    if (base != NULL){ // se não estiver vazio vai mostrar a árvore de funcionários
         mostrarHierarquia(base->esquerda);
         printf("Nome: %s | Matrícula: %d", base->nome, base->matricula);
         mostrarHierarquia(base->direita);
@@ -87,7 +93,7 @@ void mostrarHierarquia(Funcionario* base){
 void liberarHierarquia(Funcionario* base){
     if (base != NULL){
         liberarHierarquia(base->esquerda);
-        liberarHierarquia(base->direita);
+        liberarHierarquia(base->direita); // percorre todos até a árvore estar vazia 
         free(base);
     }
 }
