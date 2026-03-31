@@ -30,26 +30,27 @@ Exibição de Funcionários: O sistema permitirá listar todos os funcionários 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
 typedef struct Funcionario{
     int matricula; // equivalente a valor
     char nome[25]; // \/\/\/\/\/\/ arrumar p ser dinamico \/\/\/\/\/\/\/\/
     char cargo[25]; // idem
     float salario;
-    struct No* esquerda;
-    struct No* direita;
+    struct Funcionario* esquerda;
+    struct Funcionario* direita;
 }Funcionario;
 
-Funcionario* criarFuncionario(int n_matricula, char* nome[], char* cargo[], float salario){
+Funcionario* criarFuncionario(int n_matricula, char* nome, char* cargo, float salario){
     Funcionario* novoFuncionario = (Funcionario*)malloc(sizeof(Funcionario)); // cria ponteiro do tamanho da strcut Funcionario
     if (novoFuncionario == NULL){ // verifica se deu certo a criação de um novo funcionário 
-        fprintf(stderr,"Erro na alocação\n")
+        fprintf(stderr,"Erro na alocação\n");
         exit(1); // se tudo ser errado sai 
-    // }
+    }
     // atribução ao campos 
     novoFuncionario->matricula = n_matricula;
-    *novoFuncionario->nome = *nome;
-    *novoFuncionario->cargo = *cargo;
+    strcpy(novoFuncionario->nome, nome);
+    strcpy(novoFuncionario->cargo, cargo);
     novoFuncionario->salario = salario;
     novoFuncionario->direita = NULL;
     novoFuncionario->esquerda = NULL;
@@ -58,34 +59,39 @@ Funcionario* criarFuncionario(int n_matricula, char* nome[], char* cargo[], floa
 }
 
 // INSERÇÃO DE FUNCIONÁRIO
-Funcionario* inserirFuncionario(Funcionario* base, int n_matricula, char* nome[], char* cargo, float salario){
+Funcionario* inserirFuncionario(Funcionario* base, int n_matricula, char* nome, char* cargo, float salario){
     if(base == NULL){ // se n tiver nada na base vai ser o primeiro funcionário
-        return criarFuncionario(n_matricula, *nome, *cargo, salario);
+        return criarFuncionario(n_matricula, nome, cargo, salario);
     }
 
     if(n_matricula < base->matricula){ // aqui descide se vai para a esquerda ou para a direita
-        base->esquerda = inserirNo(base->esquerda, n_matricula, *nome, *cargo, salario);
+        base->esquerda = inserirFuncionario(base->esquerda, n_matricula, nome, cargo, salario);
     } else {
-        base->direita = inserirNo(base->direita, n_matricula, *nome, *cargo, salario);
+        base->direita = inserirFuncionario(base->direita, n_matricula, nome, cargo, salario);
     }
 
     return base;
 }
 
-Funcionario* editarFuncionario(Funcionario* base, int ){
+// edição de funcionário
+Funcionario* editarFuncionario(Funcionario* base, int nova_matricula, char* novo_nome,char* novoCargo, float novo_salario){
     if (base == NULL){
       printf("Funcionário inexistente");
-    }
+    } else {
+
+  }
+
+  // a fazer
+
   }
 
 // EXIBIÇÃO DE FUNCIONÁRIO
-void mostrarHierarquia(Funcionario* base){
+void mostrarHierarquia(Funcionario* base, int nivel){
     if (base != NULL){ // se não estiver vazio vai mostrar a árvore de funcionários
-        mostrarHierarquia(base->esquerda);
-        printf("Nome: %s | Matrícula: %d", base->nome, base->matricula);
-        mostrarHierarquia(base->direita);
-    } else {
-        printf("Não há funcionários!\n");
+      mostrarHierarquia(base->esquerda, nivel + 1); // antes os da esquerda (menores)
+      printf("Matrícula: %d | Nome: %s | Cargo: %s | Salário: R$ %.2f | Nível: %d", base->matricula, base->nome, base->cargo, base->salario, nivel);
+
+      mostrarHierarquia(base->direita, nivel + 1); // dps os da direita maiores
     }
 }
 
@@ -98,7 +104,40 @@ void liberarHierarquia(Funcionario* base){
     }
 }
 
+Funcionario* buscaFuncionario(int matricula){
+  // a fazer
+}
+
 int main (){
-    // demonstração de funcionamento
-    printf("olá");
+  setlocale(LC_ALL, "pt_BR.UTF-8"); // trocar apara "Portuguese_Brazil" no windows
+
+  Funcionario* raiz = NULL;
+  int escolha = 1;
+
+  while (escolha != 0){
+    printf("------------------");
+    printf("[1] Inserir funcionário\n");
+    printf("[2] Editar funcionário\n");
+    printf("[3] Busca funcionário\n");
+    printf("[4] Listar funcionários\n");
+    printf("[0] Sair\n\n");
+
+    printf("Insira a opção desejada: ");
+    scanf("%d", &escolha);
+
+    switch (escolha) {
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      default:
+      break;
+    }
+  }
+
+  liberarHierarquia(raiz);
 }
