@@ -7,7 +7,7 @@ typedef struct No{
     int nivel;              // nível do nó
     struct No* esquerda;    // próximo nó se for menor
     struct No* direita;     // próximo nó se for maior
-}
+}No;
 
 // Criação do nó
 No* criarNo(int valor){
