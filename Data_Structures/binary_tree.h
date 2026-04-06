@@ -2,7 +2,36 @@
 #include <stdlib.h>
 
 typedef struct No{
-    int valor;
-    struct No* esquerda;
-    struct No* direita;
+    int valor; // valor do nó
+    int nivel; // nível do nó
+    struct No* esquerda;    // próximo nó se for menor
+    struct No* direita;     // próximo nó se for maior
+}
+
+void criarNo(){
+
+}
+
+void inserirNo(){
+
+}
+
+void editarNo(){
+
+}
+
+void deletarNo(){
+
+}
+
+void buscarNo(){
+
+}
+
+void liberarArvore(){
+
+}
+
+void checarBalanceamento(){
+
 }
