@@ -30,7 +30,7 @@ No* criarNo(int valor){
 }
 
 // Inserção de nó
-void inserirNo(No* raiz, int valor){
+No* inserirNo(No* raiz, int valor){
     // se a raiz estiver vazia será criado o primeiro nó
     if(raiz == NULL){
         raiz = criarNo(valor);
