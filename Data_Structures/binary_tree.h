@@ -28,8 +28,20 @@ No* criarNo(int valor){
     return novoNo;
 }
 
-void inserirNo(){
+// Inserção de nó
+void inserirNo(No* raiz, int valor){
+    // se a raiz estiver vazia será criado o primeiro nó
+    if(raiz == NULL){
+        raiz = criarNo(valor);
+    }
 
+    if (valor < raiz->valor){
+        raiz->esquerda = inserirNo(raiz->esquerda, valor); // insere à esquerda se o valor for menor
+    } else {
+        raiz->direita = inserirNo(raiz->direita, valor); // insere à direita se o valor for maior
+    }
+
+    return raiz;
 }
 
 void editarNo(){
