@@ -5,3 +5,5 @@ cmake-build-debug/build.ninja
 /CMakeFiles
 /cmake-build-debug
 /.idea
+*.log
+*.exe
