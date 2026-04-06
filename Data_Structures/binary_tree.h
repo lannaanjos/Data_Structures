@@ -47,7 +47,7 @@ void inserirNo(No* raiz, int valor){
 
 void editarNo(No* raiz, int novoValor){
     if (raiz->valor == novoValor){
-        printf("Nó já possui valor '%d'", valor);
+        printf("Nó já possui valor '%d'", novoValor);
         return;
     }
 }
