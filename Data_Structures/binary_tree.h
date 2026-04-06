@@ -17,7 +17,8 @@ No* criarNo(int valor){
         // stderr = standard error, que é seprado do stdout (saída normal do programa)
         // serve para manter mensagens de erro separadas da saída normal
         fprintf(stderr, "Erro na alocação\n");
-        exit(1); // encerra o programa imediatamente com código de saída 1 (código de erro)
+        // encerra o programa imediatamente com código de saída 1 (código de erro)
+        exit(1);
     }
 
     // atribuição dos campos
@@ -36,16 +37,19 @@ void inserirNo(No* raiz, int valor){
     }
 
     if (valor < raiz->valor){
-        raiz->esquerda = inserirNo(raiz->esquerda, valor); // insere à esquerda se o valor for menor
+        raiz->esquerda = inserirNo(raiz->esquerda, valor);  // insere à esquerda se o valor for menor
     } else {
-        raiz->direita = inserirNo(raiz->direita, valor); // insere à direita se o valor for maior
+        raiz->direita = inserirNo(raiz->direita, valor);    // insere à direita se o valor for maior
     }
 
     return raiz;
 }
 
-void editarNo(){
-
+void editarNo(No* raiz, int novoValor){
+    if (raiz->valor == novoValor){
+        printf("Nó já possui valor '%d'", valor);
+        return;
+    }
 }
 
 void deletarNo(){
